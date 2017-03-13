@@ -1,0 +1,5 @@
+# cat=invisiblerecaptcha//0010; type=text; label= Google Recaptcha Sitekey: Go to developers.google.com/recaptcha/ and register your domain. After that you can add your site key here.
+plugin.tx_invisiblerecaptcha.sitekey = abcdef
+
+# cat=invisiblerecaptcha//0020; type=text; label= Google Recaptcha Secretkey: Go to developers.google.com/recaptcha/ and register your domain. After that you can add your secret key here.
+plugin.tx_invisiblerecaptcha.secretkey = abcdef
