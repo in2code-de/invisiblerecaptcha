@@ -1,7 +1,12 @@
 {
   "name": "in2code/invisiblerecaptcha",
   "description": "Google invisible recaptcha extension for powermail",
-  "keywords": ["typo3", "powermail", "captcha", "recaptcha"],
+  "keywords": [
+    "typo3",
+    "powermail",
+    "captcha",
+    "recaptcha"
+  ],
   "homepage": "https://github.com/einpraegsam/invisiblerecaptcha",
   "authors": [
     {
@@ -10,7 +15,7 @@
     }
   ],
   "type": "typo3-cms-extension",
-  "license": "GPL-3.0",
+  "license": "GPL-2.0-or-later",
   "require": {
     "typo3/cms": ">=8.7.0 <10.0.0",
     "in2code/powermail": ">=5.0.0 <6.0.0"
