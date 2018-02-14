@@ -5,7 +5,8 @@
     "typo3",
     "powermail",
     "captcha",
-    "recaptcha"
+    "recaptcha",
+    "invisiblerecaptcha"
   ],
   "homepage": "https://github.com/einpraegsam/invisiblerecaptcha",
   "authors": [

@@ -8,9 +8,9 @@
 
 ## Dependencies
 
-* powermail >= 3.9 and < 5.0
-* TYPO3 >= 7.6 and < 9.0
-* php >= 5.5
+* powermail >= 5.0
+* TYPO3 >= 8.7 and < 10.0
+* php >= 7.0
 
 
 ## Installation
