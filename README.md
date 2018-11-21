@@ -53,6 +53,7 @@ plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/p
 
 | Version    | Date       | Description                                                                                                  |
 | ---------- |:----------:| ------------------------------------------------------------------------------------------------------------:|
+| 4.0.0      | 2018-11-21 | Update for powermail 7.x, small bugfix in Template file                                                      |
 | 3.0.0      | 2018-07-13 | Update for powermail 6.x                                                                                     |
 | 2.0.0      | 2018-01-31 | Update for powermail 5.x                                                                                     |
 | 1.1.1      | 2017-11-10 | Replace hardcoded button title in template                                                                   |
