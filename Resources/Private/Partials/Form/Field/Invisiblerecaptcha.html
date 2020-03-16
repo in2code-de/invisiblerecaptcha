@@ -9,7 +9,8 @@
 	<div class="{settings.styles.framework.fieldWrappingClasses} {settings.styles.framework.offsetClasses}">
 		<f:if condition="{settings.invisiblerecaptcha.sitekey} != 'abcdef'">
 			<f:then>
-				<button class="powermail_submit btn btn-primary g-recaptcha" data-sitekey="{settings.invisiblerecaptcha.sitekey}" data-callback='onSubmit'>{field.title}</button>
+				<div class="g-recaptcha" data-sitekey="{settings.invisiblerecaptcha.sitekey}"></div>
+				<button class="powermail_submit btn btn-primary" data-callback='onSubmit'>{field.title}</button>
 			</f:then>
 			<f:else>
 				<p>
