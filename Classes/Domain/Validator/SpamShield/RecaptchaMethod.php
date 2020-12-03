@@ -1,16 +1,19 @@
 <?php
+declare(strict_types=1);
 namespace In2code\Invisiblerecaptcha\Domain\Validator\SpamShield;
 
 use In2code\Powermail\Domain\Model\Field;
 use In2code\Powermail\Domain\Validator\SpamShield\AbstractMethod;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\Exception;
 
 /**
  * Class RecaptchaMethod
  */
 class RecaptchaMethod extends AbstractMethod
 {
-
     /**
      * @var string
      */
@@ -18,14 +21,18 @@ class RecaptchaMethod extends AbstractMethod
 
     /**
      * Check if secret key is given and set it
-     * 
+     *
+     * @return void
      * @throws \Exception
      */
-    public function initialize()
+    public function initialize(): void
     {
-        if ($this->formHasRecaptcha()) {
+        if ($this->isFormWithRecaptchaField()) {
             if (empty($this->configuration['secretkey']) || $this->configuration['secretkey'] === 'abcdef') {
-                throw new \Exception('No secretkey given. Please add a secret key to TypoScript Constants');
+                throw new \LogicException(
+                    'No secretkey given. Please add a secret key to TypoScript Constants',
+                    1607014176
+                );
             }
             $this->secretKey = $this->configuration['secretkey'];
         }
@@ -33,13 +40,16 @@ class RecaptchaMethod extends AbstractMethod
 
     /**
      * @return bool true if spam recognized
+     * @throws Exception
+     * @throws ExtensionConfigurationExtensionNotConfiguredException
+     * @throws ExtensionConfigurationPathDoesNotExistException
      */
-    public function spamCheck()
+    public function spamCheck(): bool
     {
-        if (!$this->formHasRecaptcha() || $this->skipCaptchaCheck()) {
+        if (!$this->isFormWithRecaptchaField() || $this->isCaptchaCheckToSkip()) {
             return false;
         }
-        if ($this->getCaptchaResponse()) {
+        if ($this->getCaptchaResponse() !== '') {
             $jsonResult = GeneralUtility::getUrl($this->getSiteVerifyUri());
             $result = json_decode($jsonResult);
             return !$result->success;
@@ -51,8 +61,11 @@ class RecaptchaMethod extends AbstractMethod
      * Check if current form has a recaptcha field
      *
      * @return bool
+     * @throws ExtensionConfigurationExtensionNotConfiguredException
+     * @throws ExtensionConfigurationPathDoesNotExistException
+     * @throws Exception
      */
-    protected function formHasRecaptcha()
+    protected function isFormWithRecaptchaField(): bool
     {
         foreach ($this->mail->getForm()->getPages() as $page) {
             /** @var Field $field */
@@ -68,22 +81,22 @@ class RecaptchaMethod extends AbstractMethod
     /**
      * @return string
      */
-    protected function getSiteVerifyUri()
+    protected function getSiteVerifyUri(): string
     {
         return 'https://www.google.com/recaptcha/api/siteverify' .
             '?secret=' . $this->secretKey . '&response=' . $this->getCaptchaResponse();
     }
 
     /**
-     * @return string|false
+     * @return string
      */
-    protected function getCaptchaResponse()
+    protected function getCaptchaResponse(): string
     {
         $response = GeneralUtility::_GP('g-recaptcha-response');
         if (!empty($response)) {
             return $response;
         }
-        return false;
+        return '';
     }
 
     /**
@@ -93,7 +106,7 @@ class RecaptchaMethod extends AbstractMethod
      *
      * @return bool
      */
-    protected function skipCaptchaCheck()
+    protected function isCaptchaCheckToSkip(): bool
     {
         if (property_exists($this, 'flexForm')) {
             $confirmationActive = $this->flexForm['settings']['flexform']['main']['confirmation'] === '1';
@@ -105,7 +118,7 @@ class RecaptchaMethod extends AbstractMethod
     /**
      * @return string "confirmation" or "create"
      */
-    protected function getActionName()
+    protected function getActionName(): string
     {
         $pluginVariables = GeneralUtility::_GPmerged('tx_powermail_pi1');
         return $pluginVariables['action'];
