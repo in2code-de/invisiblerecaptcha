@@ -1,22 +1,13 @@
 # invisiblerecaptcha
 
-
 ## Google invisible recaptcha for TYPO3 powermail to prevent spam
 
-<img src="https://box.everhelper.me/attachment/810331/84725fb7-0b3e-4c40-b52e-29d7620777bb/262407-UNiMu2vk6hQoaBSp/screen.png" />
-
-
-## Dependencies
-
-* powermail >= 5.0
-* TYPO3 >= 8.7 and < 10.0
-* php >= 7.0
+![Example form with a google invisble recaptcha](Documentation/Images/frontend.png "Example form with a google invisble recaptcha")
 
 
 ## Installation
 
-- Just install this extension - e.g. `composer require in2code/invisiblerecaptcha` or download it and install it with the old way
-- Clear caches
+- Just install this extension - e.g. `composer require in2code/invisiblerecaptcha`
 - Register your domain to www.google.com/recaptcha/
 - Add sitekey and secretkey to TypoScript Constants (see example below)
 - Replace your submit button with the new field type "Google Invisible Recaptcha"
@@ -52,7 +43,8 @@ plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/p
 ## Changelog
 
 | Version    | Date       | Description                                                                                                  |
-| ---------- |:----------:| ------------------------------------------------------------------------------------------------------------:|
+| ---------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| 5.0.0      | 2020-12-03 | Update for powermail 8.x                                                                                     |
 | 4.0.0      | 2018-11-21 | Update for powermail 7.x, small bugfix in Template file                                                      |
 | 3.0.0      | 2018-07-13 | Update for powermail 6.x                                                                                     |
 | 2.0.0      | 2018-01-31 | Update for powermail 5.x                                                                                     |
