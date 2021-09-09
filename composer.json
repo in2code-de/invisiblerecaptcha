@@ -30,5 +30,10 @@
     "psr-4": {
       "In2code\\Invisiblerecaptcha\\": "Classes"
     }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "invisiblerecaptcha"
+    }
   }
 }
