@@ -1,24 +1,44 @@
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
-	function onSubmit(token) {
-		document.getElementById("powermailform{field.page.form.uid}").submit();
-	}
-</script>
-
 <div class="powermail_fieldwrap powermail_fieldwrap_type_submit powermail_fieldwrap_{field.marker} {field.css} {settings.styles.framework.fieldAndLabelWrappingClasses}">
-	<div class="{settings.styles.framework.fieldWrappingClasses} {settings.styles.framework.offsetClasses}">
-		<f:if condition="{settings.invisiblerecaptcha.sitekey} != 'abcdef'">
-			<f:then>
-				<button class="powermail_submit btn btn-primary g-recaptcha" data-sitekey="{settings.invisiblerecaptcha.sitekey}" data-callback='onSubmit'>{field.title}</button>
-			</f:then>
-			<f:else>
-				<p>
-					Please register your domain to
-					<a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a>
-					and enter your sitekey in TypoScript Constants like<br />
-					plugin.tx_invisiblerecaptcha.sitekey = abcdef
-				</p>
-			</f:else>
-		</f:if>
-	</div>
+    <div class="{settings.styles.framework.fieldWrappingClasses} {settings.styles.framework.offsetClasses}">
+        <f:if condition="{settings.invisiblerecaptcha.sitekey} != 'abcdef'">
+            <f:then>
+                <button
+                        name="g-recaptcha-response"
+                        class="powermail_submit btn btn-primary g-recaptcha"
+                        data-g-recaptcha-sitekey="{settings.invisiblerecaptcha.sitekey}">
+                    {field.title}
+                </button>
+                <script src="https://www.google.com/recaptcha/api.js?render={settings.invisiblerecaptcha.sitekey}" async defer></script>
+                <script>
+                    if(typeof grecaptcha === 'undefined') {
+                        grecaptcha = {};
+                    }
+                    grecaptcha.ready = function(cb){
+                        if(typeof grecaptcha === 'undefined') {
+                            const c = '___grecaptcha_cfg';
+                            window[c] = window[c] || {};
+                            (window[c]['fns'] = window[c]['fns']||[]).push(cb);
+                        } else {
+                            cb();
+                        }
+                    }
+                    grecaptcha.ready(function () {
+                        document.querySelector('form button[name=g-recaptcha-response]').addEventListener('click', function(event) {
+                            grecaptcha.execute(event.target.dataset.gRecaptchaSitekey, { action: 'submit' }).then(function (token) {
+                                event.target.value = token;
+                            });
+                        })
+                    });
+                </script>
+            </f:then>
+            <f:else>
+                <p>
+                    Please register your domain to
+                    <a href="https://www.google.com/recaptcha/">https://www.google.com/recaptcha/</a>
+                    and enter your sitekey in TypoScript Constants like<br/>
+                    plugin.tx_invisiblerecaptcha.sitekey = abcdef
+                </p>
+            </f:else>
+        </f:if>
+    </div>
 </div>
