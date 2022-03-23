@@ -3,6 +3,7 @@
         <f:if condition="{settings.invisiblerecaptcha.sitekey} != 'abcdef'">
             <f:then>
                 <button
+                        type="submit"
                         name="g-recaptcha-response"
                         class="powermail_submit btn btn-primary g-recaptcha"
                         data-google-recaptcha-sitekey="{settings.invisiblerecaptcha.sitekey}">
@@ -12,9 +13,15 @@
                 <script>
                     document.addEventListener("DOMContentLoaded", function(event) {
                         document.querySelector('form button[name=g-recaptcha-response]').addEventListener('click', function (event) {
+                            if (event.target.value) {
+                                return;
+                            }
+
+                            event.preventDefault();
                             grecaptcha.ready(function () {
                                 grecaptcha.execute(event.target.dataset.googleRecaptchaSitekey, {action: 'submit'}).then(function (token) {
                                     event.target.value = token;
+                                    event.target.click();
                                 });
                             })
                         });
