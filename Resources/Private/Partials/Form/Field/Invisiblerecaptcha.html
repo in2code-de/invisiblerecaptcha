@@ -10,23 +10,7 @@
                     {field.title}
                 </button>
                 <script src="https://www.google.com/recaptcha/api.js?render={settings.invisiblerecaptcha.sitekey}" async defer></script>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        document.querySelector('form button[name=g-recaptcha-response]').addEventListener('click', function (event) {
-                            if (event.target.value) {
-                                return;
-                            }
-
-                            event.preventDefault();
-                            grecaptcha.ready(function () {
-                                grecaptcha.execute(event.target.dataset.googleRecaptchaSitekey, {action: 'submit'}).then(function (token) {
-                                    event.target.value = token;
-                                    event.target.click();
-                                });
-                            })
-                        });
-                    });
-                </script>
+                <f:render partial="Form/Field/InvisiblerecaptchaJavascript" />
             </f:then>
             <f:else>
                 <p>
