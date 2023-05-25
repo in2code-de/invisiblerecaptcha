@@ -2,34 +2,32 @@
 declare(strict_types=1);
 namespace In2code\Invisiblerecaptcha\Domain\Validator\SpamShield;
 
+use Exception;
 use In2code\Powermail\Domain\Model\Field;
 use In2code\Powermail\Domain\Validator\SpamShield\AbstractMethod;
+use LogicException;
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
 use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
 
 /**
  * Class RecaptchaMethod
  */
 class RecaptchaMethod extends AbstractMethod
 {
-    /**
-     * @var string
-     */
-    protected $secretKey = '';
+    protected string $secretKey = '';
 
     /**
      * Check if secret key is given and set it
      *
      * @return void
-     * @throws \Exception
+     * @throws Exception
      */
     public function initialize(): void
     {
         if ($this->isFormWithRecaptchaField()) {
             if (empty($this->configuration['secretkey']) || $this->configuration['secretkey'] === 'abcdef') {
-                throw new \LogicException(
+                throw new LogicException(
                     'No secretkey given. Please add a secret key to TypoScript Constants',
                     1607014176
                 );
@@ -40,7 +38,6 @@ class RecaptchaMethod extends AbstractMethod
 
     /**
      * @return bool true if spam recognized
-     * @throws Exception
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
      */
@@ -63,7 +60,6 @@ class RecaptchaMethod extends AbstractMethod
      * @return bool
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
-     * @throws Exception
      */
     protected function isFormWithRecaptchaField(): bool
     {
