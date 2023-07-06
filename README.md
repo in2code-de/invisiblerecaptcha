@@ -2,6 +2,8 @@
 
 ## Google invisible recaptcha for TYPO3 powermail to prevent spam
 
+This extensions implements reCAPTCHA, Version 2 (https://developers.google.com/recaptcha/docs/display?hl=de)
+
 ![Example form with a google invisble recaptcha](Documentation/Images/frontend.png "Example form with a google invisble recaptcha")
 
 
@@ -42,14 +44,15 @@ plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/p
 
 ## Changelog
 
-| Version    | Date       | Description                                                                                                  |
-| ---------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
-| 5.1.1      | 2021-09-25 | Fix a typo in ter-release.yml file                                                                           |
-| 5.1.0      | 2021-09-09 | Added auto deployment to TER, add extension key to composer.json file                                        |
-| 5.0.0      | 2020-12-03 | Update for powermail 8.x                                                                                     |
-| 4.0.0      | 2018-11-21 | Update for powermail 7.x, small bugfix in Template file                                                      |
-| 3.0.0      | 2018-07-13 | Update for powermail 6.x                                                                                     |
-| 2.0.0      | 2018-01-31 | Update for powermail 5.x                                                                                     |
-| 1.1.1      | 2017-11-10 | Replace hardcoded button title in template                                                                   |
-| 1.1.0      | 2017-11-04 | Update dependencies for powermail 4.x                                                                        |
-| 1.0.0      | 2017-03-13 | Initial upload - have fun                                                                                    |
+| Version | Date       | Description                                                           |
+|---------|------------|-----------------------------------------------------------------------|
+| 6.0.0   | 2023-07-06 | Update for powermail 8.x (the nearly forgotten release for TYPO3 11)  |
+| 5.1.1   | 2021-09-25 | Fix a typo in ter-release.yml file                                    |
+| 5.1.0   | 2021-09-09 | Added auto deployment to TER, add extension key to composer.json file |
+| 5.0.0   | 2020-12-03 | Update for powermail 8.x                                              |
+| 4.0.0   | 2018-11-21 | Update for powermail 7.x, small bugfix in Template file               |
+| 3.0.0   | 2018-07-13 | Update for powermail 6.x                                              |
+| 2.0.0   | 2018-01-31 | Update for powermail 5.x                                              |
+| 1.1.1   | 2017-11-10 | Replace hardcoded button title in template                            |
+| 1.1.0   | 2017-11-04 | Update dependencies for powermail 4.x                                 |
+| 1.0.0   | 2017-03-13 | Initial upload - have fun                                             |
