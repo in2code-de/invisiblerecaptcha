@@ -43,8 +43,9 @@ plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/p
 ## Changelog
 
 | Version | Date       | Description                                                           |
-|---------| ---------- |-----------------------------------------------------------------------|
-| 6.0.0   |            | Update for powermail 11.x                                             |
+|---------|------------|-----------------------------------------------------------------------|
+| 7.0.0   | 2023-07-10 | Update for powermail 11.x / TYPO3 12                                  |
+| 6.0.0   | 2023-07-10 | Update for powermail 10.x / TYPO3 11                                  |
 | 5.1.1   | 2021-09-25 | Fix a typo in ter-release.yml file                                    |
 | 5.1.0   | 2021-09-09 | Added auto deployment to TER, add extension key to composer.json file |
 | 5.0.0   | 2020-12-03 | Update for powermail 8.x                                              |
