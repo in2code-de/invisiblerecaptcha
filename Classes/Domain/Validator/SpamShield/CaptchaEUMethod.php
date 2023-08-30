@@ -49,9 +49,6 @@ class CaptchaEUMethod extends AbstractMethod
         curl_close($ch);
   
         $resultObject = json_decode($result);
-        debug($this->restKey);
-        debug($resultObject);
-        exit;
         if ($resultObject->success) {
           return true;
         } else {
