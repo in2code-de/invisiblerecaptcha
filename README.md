@@ -11,7 +11,7 @@ This extensions implements captcha.eu
 - Just install this extension - e.g. `composer require captcha-eu/typo3-powermail`
 - Register your domain to www.captcha.eu
 - Add publickey and restkey to TypoScript Constants (see example below)
-- Replace your submit button with the new field type "CaptchaEU"
+- add a new field "captcha.eu" somewhere in your form (position doesnt matter)
 - Have fun
 
 Example for TypoScript Constants:
