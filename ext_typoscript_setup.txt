@@ -1,33 +1,33 @@
 plugin.tx_powermail {
 	view {
 		templateRootPaths {
-			11 = EXT:invisiblerecaptcha/Resources/Private/Templates/
+			11 = EXT:captchaeu/Resources/Private/Templates/
 		}
 		partialRootPaths {
-			11 = EXT:invisiblerecaptcha/Resources/Private/Partials/
+			11 = EXT:captchaeu/Resources/Private/Partials/
 		}
 	}
 	settings.setup {
-		invisiblerecaptcha {
-			sitekey = {$plugin.tx_invisiblerecaptcha.sitekey}
+		captchaeu {
+			publickey = {$plugin.tx_captchaeu.publickey}
 		}
 		spamshield.methods {
-			# Add invisible recaptcha spamcheck
+			# Add captcha.eu spamcheck
 			11 {
 				_enable = 1
 
 				# Spamcheck name
-				name = Google Invisible Recaptcha
+				name = Captcha.eu
 
 				# Class
-				class = In2code\Invisiblerecaptcha\Domain\Validator\SpamShield\RecaptchaMethod
+				class = CaptchaEU\Domain\Validator\SpamShield\CaptchaEUMethod
 
 				# if this check failes - add this indication value to indicator (0 disables this check completely)
 				indication = 10
 
 				# method configuration
 				configuration {
-					secretkey = {$plugin.tx_invisiblerecaptcha.secretkey}
+					restkey = {$plugin.tx_captchaeu.restkey}
 				}
 			}
 		}

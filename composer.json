@@ -1,20 +1,19 @@
 {
-  "name": "in2code/invisiblerecaptcha",
-  "description": "Google invisible recaptcha TYPO3 extension for powermail",
+  "name": "captcha-eu/typo3-powermail",
+  "description": "Captcha.eu TYPO3 extension for powermail",
   "keywords": [
     "typo3",
     "powermail",
     "captcha",
-    "recaptcha",
-    "invisiblerecaptcha"
+    "captcha-eu"
   ],
-  "homepage": "https://github.com/einpraegsam/invisiblerecaptcha",
+  "homepage": "https://github.com/captcha-eu/typo3-powermail",
   "authors": [
     {
-      "name": "Alex Kellner",
-      "email": "alexander.kellner@in2code.de",
-      "role": "Technical owner",
-      "homepage": "https://www.in2code.de"
+      "name": "Helmut Januschka",
+      "email": "h.januschka@captcha.eu",
+      "role": "CEO",
+      "homepage": "https://www.captcha.eu"
     }
   ],
   "type": "typo3-cms-extension",
@@ -24,16 +23,16 @@
     "ext-json": "*"
   },
   "replace": {
-    "typo3-ter/invisiblerecaptcha": "self.version"
+    "typo3-ter/captchaeu": "self.version"
   },
   "autoload": {
     "psr-4": {
-      "In2code\\Invisiblerecaptcha\\": "Classes"
+      "CaptchaEU\\": "Classes"
     }
   },
   "extra": {
     "typo3/cms": {
-      "extension-key": "invisiblerecaptcha"
+      "extension-key": "captchaeu"
     }
   }
 }

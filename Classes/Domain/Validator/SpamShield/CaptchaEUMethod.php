@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace In2code\Invisiblerecaptcha\Domain\Validator\SpamShield;
+namespace CaptchaEU\Domain\Validator\SpamShield;
 
 use In2code\Powermail\Domain\Model\Field;
 use In2code\Powermail\Domain\Validator\SpamShield\AbstractMethod;
@@ -10,14 +10,14 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\Exception;
 
 /**
- * Class RecaptchaMethod
+ * Class CaptchaEUMethod
  */
-class RecaptchaMethod extends AbstractMethod
+class CaptchaEUMethod extends AbstractMethod
 {
     /**
      * @var string
      */
-    protected $secretKey = '';
+    protected $restKey = '';
 
     /**
      * Check if secret key is given and set it
@@ -27,16 +27,38 @@ class RecaptchaMethod extends AbstractMethod
      */
     public function initialize(): void
     {
-        if ($this->isFormWithRecaptchaField()) {
-            if (empty($this->configuration['secretkey']) || $this->configuration['secretkey'] === 'abcdef') {
+        if ($this->isFormWithCaptchaEUField()) {
+          
+            if (empty($this->configuration['restkey']) || $this->configuration['restkey'] === 'abcdef') {
                 throw new \LogicException(
-                    'No secretkey given. Please add a secret key to TypoScript Constants',
+                    'No restkey given. Please add a secret key to TypoScript Constants',
                     1607014176
                 );
             }
-            $this->secretKey = $this->configuration['secretkey'];
+            $this->restKey = $this->configuration['restkey'];
+            
         }
     }
+
+    public function checkSolution($solution) {
+        $ch = curl_init("https://www.captcha.eu/validate");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $solution);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Rest-Key: ' . $this->restKey));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
+  
+        $resultObject = json_decode($result);
+        debug($this->restKey);
+        debug($resultObject);
+        exit;
+        if ($resultObject->success) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+  
 
     /**
      * @return bool true if spam recognized
@@ -46,15 +68,15 @@ class RecaptchaMethod extends AbstractMethod
      */
     public function spamCheck(): bool
     {
-        if (!$this->isFormWithRecaptchaField() || $this->isCaptchaCheckToSkip()) {
+        
+        if (!$this->isFormWithCaptchaEUField() || $this->isCaptchaCheckToSkip()) {
             return false;
         }
-        if ($this->getCaptchaResponse() !== '') {
-            $jsonResult = GeneralUtility::getUrl($this->getSiteVerifyUri());
-            $result = json_decode($jsonResult);
-            return !$result->success;
+        $result = $this->checkSolution($_POST["captcha_at_solution"]);
+        if(!$result) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -65,12 +87,12 @@ class RecaptchaMethod extends AbstractMethod
      * @throws ExtensionConfigurationPathDoesNotExistException
      * @throws Exception
      */
-    protected function isFormWithRecaptchaField(): bool
+    protected function isFormWithCaptchaEUField(): bool
     {
         foreach ($this->mail->getForm()->getPages() as $page) {
             /** @var Field $field */
             foreach ($page->getFields() as $field) {
-                if ($field->getType() === 'invisiblerecaptcha') {
+                if ($field->getType() === 'captchaeu') {
                     return true;
                 }
             }
@@ -78,26 +100,7 @@ class RecaptchaMethod extends AbstractMethod
         return false;
     }
 
-    /**
-     * @return string
-     */
-    protected function getSiteVerifyUri(): string
-    {
-        return 'https://www.google.com/recaptcha/api/siteverify' .
-            '?secret=' . $this->secretKey . '&response=' . $this->getCaptchaResponse();
-    }
 
-    /**
-     * @return string
-     */
-    protected function getCaptchaResponse(): string
-    {
-        $response = GeneralUtility::_GP('g-recaptcha-response');
-        if (!empty($response)) {
-            return $response;
-        }
-        return '';
-    }
 
     /**
      * Captcha check should be skipped on createAction if there was a confirmationAction where the captcha was

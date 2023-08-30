@@ -1,0 +1,40 @@
+
+<script>
+	window.CaptchaEUSettings = {}
+	window.CaptchaEUSettings.publicSecret = "{settings.captchaeu.publickey}";
+		
+</script>
+<script src="https://www.captcha.eu/sdk.js"></script>
+
+<div class="powermail_fieldwrap powermail_fieldwrap_type_submit powermail_fieldwrap_{field.marker} {field.css} {settings.styles.framework.fieldAndLabelWrappingClasses}">
+	<div class="{settings.styles.framework.fieldWrappingClasses} {settings.styles.framework.offsetClasses}">
+		<f:if condition="{settings.captchaeu.publickey} != 'abcdef'">
+			<f:then>
+				<script>
+					var KROTReady = function (callback) {
+					document.readyState === "interactive" || document.readyState === "complete"
+						? callback()
+						: document.addEventListener("DOMContentLoaded", callback);
+					};
+					KROTReady(function() {
+								var forms = document.getElementsByClassName("powermail_form");
+								Array.from(forms).forEach(function(f) {
+									KROT.interceptForm(f)
+								})
+					})
+				</script>
+				
+				
+			</f:then>
+			<f:else>
+				<p>
+					Please register your domain to
+					<a href="https://www.captcha.eu">https://www.captcha.eu</a>
+					and enter your publickey in TypoScript Constants like<br />
+					plugin.tx_captchaeu.publickey = publickey
+					plugin.tx_captchaeu.restkey = restkey
+				</p>
+			</f:else>
+		</f:if>
+	</div>
+</div>
