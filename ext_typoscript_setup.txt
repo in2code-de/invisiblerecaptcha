@@ -23,7 +23,7 @@ plugin.tx_powermail {
 				class = CaptchaEU\Domain\Validator\SpamShield\CaptchaEUMethod
 
 				# if this check failes - add this indication value to indicator (0 disables this check completely)
-				indication = 10
+				indication = 100
 
 				# method configuration
 				configuration {
