@@ -2,8 +2,6 @@
 
 ## Google invisible recaptcha for TYPO3 powermail to prevent spam
 
-This extensions implements reCAPTCHA, Version 2 (https://developers.google.com/recaptcha/docs/display?hl=de)
-
 ![Example form with a google invisble recaptcha](Documentation/Images/frontend.png "Example form with a google invisble recaptcha")
 
 
@@ -46,7 +44,9 @@ plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/p
 
 | Version | Date       | Description                                                           |
 |---------|------------|-----------------------------------------------------------------------|
-| 6.0.0   | 2023-07-06 | Update for powermail 8.x (the nearly forgotten release for TYPO3 11)  |
+| 7.0.1   | 2024-01-23 | Update for powermail 11.x - 12.x / TYPO3 12                           |
+| 7.0.0   | 2023-07-10 | Update for powermail 11.x / TYPO3 12                                  |
+| 6.0.0   | 2023-07-10 | Update for powermail 10.x / TYPO3 11                                  |
 | 5.1.1   | 2021-09-25 | Fix a typo in ter-release.yml file                                    |
 | 5.1.0   | 2021-09-09 | Added auto deployment to TER, add extension key to composer.json file |
 | 5.0.0   | 2020-12-03 | Update for powermail 8.x                                              |
