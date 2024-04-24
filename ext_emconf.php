@@ -11,8 +11,8 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'captcha.eu',
     'constraints' => [
         'depends' => [
-            'powermail' => '10.0.0-10.99.99',
-            'typo3' => '10.0.0-11.5.99'
+            'powermail' => '11.0.0-12.99.99',
+            'typo3' => '12.4.0-12.4.99'
         ],
         'conflicts' => [],
         'suggests' => [],
