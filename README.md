@@ -39,11 +39,20 @@ plugin.tx_powermail.settings.setup.spamshield.email = spamreceiver@yourdomain.or
 plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/powermailSpam.log
 ```
 
+## Early Access Programm for TYPO3 13 support
+
+:information_source: **TYPO3 13 compatibility**
+> See [EAP page (DE)](https://www.in2code.de/agentur/typo3-extensions/early-access-programm/) or
+> [EAP page (EN)](https://www.in2code.de/en/agency/typo3-extensions/early-access-program/) for more information how
+> to get access to a TYPO3 13 version
+
+
 
 ## Changelog
 
 | Version | Date       | Description                                                          |
 |---------|------------|----------------------------------------------------------------------|
+| 13.0.0  | tbd        | Feature | TYPO3 v13 compatibility - planned                          |
 | 7.0.2   | 2024-02-07 | TER release for powermail 11.x - 12.x / TYPO3 12                     |
 | 7.0.1   | 2024-01-23 | Update for powermail 11.x - 12.x / TYPO3 12                          |
 | 7.0.0   | 2023-07-10 | Update for powermail 11.x / TYPO3 12                                 |
