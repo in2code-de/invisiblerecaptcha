@@ -1,9 +1,18 @@
 # invisiblerecaptcha
+Google invisible recaptcha for TYPO3 powermail to prevent spam
 
-## Google invisible recaptcha for TYPO3 powermail to prevent spam
+> [!WARNING]
+> # Sunset Notification
+> We have decided to sunset the extension `invisiblerecaptcha` due to general incompatibility
+> with Powermail in regard to validation.
+>
+> **This extensions support ends with TYPO3 v12 and will not be developed further!**
+>
+> If you need a captcha solution for your Powermail forms, please consider:
+> * [in2code/powermailrecaptcha](https://github.com/in2code-de/powermailrecaptcha)
+> * [thomasrawiel/powermailcaptcha](https://github.com/thomasrawiel/powermailcaptcha)
 
 ![Example form with a google invisble recaptcha](Documentation/Images/frontend.png "Example form with a google invisble recaptcha")
-
 
 ## Installation
 
@@ -38,15 +47,6 @@ plugin.tx_powermail.settings.setup.spamshield.email = spamreceiver@yourdomain.or
 # Write to a logfile when spam was recognized
 plugin.tx_powermail.settings.setup.spamshield.logfileLocation = typo3temp/logs/powermailSpam.log
 ```
-
-## Early Access Programm for TYPO3 13 support
-
-:information_source: **TYPO3 13 compatibility**
-> See [EAP page (DE)](https://www.in2code.de/agentur/typo3-extensions/early-access-programm/) or
-> [EAP page (EN)](https://www.in2code.de/en/agency/typo3-extensions/early-access-program/) for more information how
-> to get access to a TYPO3 13 version
-
-
 
 ## Changelog
 
